@@ -30,7 +30,7 @@ def get_moneys(begin_date,end_date):
         print(minimo)
         return render_template ("dollar.html",datosUS=dataset, sumatory=sumatory, maximo=maximo, minimo=minimo,udis= data_udis, sumUDI = sumatoryUDIS, maxUDI = maximoUDIS, minUDI =  minimoUDIS )
 
-@views.route("/", methods=["POST", "GET"])
+@views.route("/api/home", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
         fecha_inicio = request.form["fecha_inicio"]
