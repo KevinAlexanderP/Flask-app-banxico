@@ -14,7 +14,7 @@ def get_moneys(begin_date,end_date):
             return redirect(url_for("views.get_moneys", begin_date=fecha_inicio,end_date=fecha_final))
         token = "90fb8e5aa818ca5fae557685cc4f3aadca77c195764771960799ba80a66b29a8"
         url = 'https://www.banxico.org.mx/SieAPIRest/service/v1/series/SF43718/datos/{}/{}?token={}'.format(begin_date,end_date,token)
-        udis_url = 'https://www.banxico.org.mx/SieAPIRest/service/v1/series/SP68257/datos/{}/{}?token={}'.format(begin_date,end_date)
+        udis_url = 'https://www.banxico.org.mx/SieAPIRest/service/v1/series/SP68257/datos/{}/{}?token={}'.format(begin_date,end_date,token)
         response = urllib.request.urlopen(url)
         response_ud =  json.loads(urllib.request.urlopen(udis_url).read())
         data_udis = response_ud['bmx']['series'][0]['datos']
