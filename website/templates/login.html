@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/api/home">Home</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/info-serie-SF43718"
+                >USDS Serie SF43718
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/info-dev"
+                >Acerca del desarrollador
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/faq">FAQ </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="row mb-4">
+          <div class="col">
+            <h1>
+              Esta aplicacion genera tablas <br />
+              con valores dinamicas conseguidos <br />
+              desde el consumo del API de Banxico , los valores actuales
+              <br />
+              <br />
+              : FIX con Serie SF43718
+              <br />
+              <br />
+              : UDIS con conversion diaria a Moneda Mexicana Nacional
+            </h1>
+          </div>
+          <div class="col">
+            <img
+              src="data:image/png;base64,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"
+              alt=""
+              style="width: 400px; heigth: 400px"
+            />
+          </div>
+        </div>
+        <!-- <h1>
+    Esta aplicacion genera tablas <br>
+    con valores dinamicas conseguidos <br>
+    desde el consumo del API de Banxico 
+</h1> -->
+
+        <form action="#" method="post">
+          <p>
+            Por favor ingrese el periodo deseado , al dar submit usted estara
+            accediendo a una ventana con la informacion deseada:
+          </p>
+          <p><input type="date" name="fecha_inicio" /></p>
+          <p><input type="date" name="fecha_final" /></p>
+          <p><input type="submit" value="submit" /></p>
+        </form>
+      </div>
+    </div>
+    {% endblock %}
+    <footer>
+      <div class="footer">
+        <div class="row">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-instagram"></i></a>
+          <a href="#"><i class="fa fa-youtube"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+
+        <div class="row">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Github</a></li>
+            <li><a href="#">kalexanderdev@gmail.com</a></li>
+            <li><a href="#">Stack: Flask, Banxico API</a></li>
+            <li><a href="#">Direccion: Coacalco de Berriozabal</a></li>
+          </ul>
+        </div>
+
+        <div class="container">
+          <div class="row">
+            <div class="footer">
+              Kalex Copyright © 2022 kalexander - For Confio Backend Position ||
+              Designed By: Kevin Alexander Perez F.
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static',filename='styles/footer.css') }}"
+  />
+</html>

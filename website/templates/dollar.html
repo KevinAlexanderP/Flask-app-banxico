@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <title>Consume Rest Api</title>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/api/home">Home</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/info-serie-SF43718"
+                >USDS Serie SF43718
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/info-dev"
+                >Acerca del desarrollador
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/api/faq">FAQ </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container"></div>
+    {% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-6">
+          <form action="#" method="post">
+            <p>Por favor ingrese el periodo deseado:</p>
+            <p><input type="date" name="fecha_inicio" /></p>
+            <p><input type="date" name="fecha_final" /></p>
+            <p><input type="submit" value="submit" /></p>
+          </form>
+        </div>
+        <div class="col-6">
+          <div class="row">
+            <div>
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+          <div class="row">
+            <div>
+              <canvas id="myChart2"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+    <div class="container shadow text-center rounded">
+      <div class="row">
+        <div class="col-4">
+          <h1 class="text-center">Precio usd mxn - Banxico SF43718</h1>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="container mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Precio mxn - USD</th>
+              <th>Promedio</th>
+              <th>Valor Maximo</th>
+              <th>Valor Minimo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for movie in datosUS %}
+            <tr>
+              <td class="fecha-us">{{ movie.fecha }}</td>
+              <td class="values-us">{{ movie.dato }}</td>
+              <td>{{ sumatory }}</td>
+              <td>{{ maximo}}</td>
+              <td>{{ minimo}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <br />
+      <div class="container shadow text-center rounded">
+        <div class="row">
+          <div class="col-4">
+            <h1 class="text-center">Precio UDIS API - Banxico SP68257</h1>
+          </div>
+        </div>
+      </div>
+      <div class="container mt-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Precio mxn - udis</th>
+              <th>Promedio</th>
+              <th>Valor Maximo</th>
+              <th>Valor Minimo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for movie in udis %}
+            <tr>
+              <td class="fecha-udi">{{ movie.fecha }}</td>
+              <td class="values-udi">{{ movie.dato }}</td>
+              <td>{{ sumUDI }}</td>
+              <td>{{ maxUDI}}</td>
+              <td>{{ minUDI}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <footer>
+      <div class="footer">
+        <div class="row">
+          <a href="#"><i class="fa fa-facebook"></i></a>
+          <a href="#"><i class="fa fa-instagram"></i></a>
+          <a href="#"><i class="fa fa-youtube"></i></a>
+          <a href="#"><i class="fa fa-twitter"></i></a>
+        </div>
+        <div class="row">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Github</a></li>
+            <li><a href="#">kalexanderdev@gmail.com</a></li>
+            <li><a href="#">Stack: Flask, Banxico API</a></li>
+            <li><a href="#">Direccion: Coacalco de Berriozabal</a></li>
+          </ul>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="footer">
+              Kalex Copyright © 2022 kalexander - For Confio Backend Position ||
+              Designed By: Kevin Alexander Perez F.
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static',filename='styles/index.css') }}"
+  />
+  <link
+    rel="stylesheet"
+    type="text/css"
+    href="{{ url_for('static',filename='styles/footer.css') }}"
+  />
+  <script>
+
+    let elementsUS = document.getElementsByClassName("values-us");
+    let arrayOfElements = Array.prototype.slice.call(elementsUS);
+    dataiku = arrayOfElements.map((x) => Number(x.outerText));
+
+    let elementsDateUS = document.getElementsByClassName("fecha-us");
+    let arrUSDate = Array.prototype.slice.call(elementsDateUS);
+    let df = arrUSDate.map((x) => x.outerText);
+
+    let elementsUDI = document.getElementsByClassName("values-udi");
+    let arrayOfElementsUDI = Array.prototype.slice.call(elementsUDI);
+    dataiU = arrayOfElementsUDI.map((x) => Number(x.outerText));
+
+    let elementsDateUDI = document.getElementsByClassName("fecha-udi");
+    let arrUDIDate = Array.prototype.slice.call(elementsDateUDI);
+    let dfUDI = arrUDIDate.map((x) => x.outerText);
+
+    console.log(dataiku);
+
+    const data = {
+      labels: df,
+      datasets: [
+        {
+          label: "Dolares - MXN - FIX ",
+          backgroundColor: "#C0B9DD",
+          borderColor: "#80A1D4",
+          data: dataiku,
+        },
+      ],
+    };
+    const data2 = {
+      labels: dfUDI,
+      datasets: [
+        {
+          label: "UDI - MXN -  ",
+          backgroundColor: "#C0B9DD",
+          borderColor: "#80A1D4",
+          data: dataiU,
+        },
+      ],
+    };
+
+    const config = {
+      type: "line",
+      data: data,
+      options: {},
+    };
+    const config2 = {
+      type: "line",
+      data: data2,
+      options: {},
+    };
+  </script>
+  <script>
+    const myChart = new Chart(document.getElementById("myChart"), config);
+    const myChart2 = new Chart(document.getElementById("myChart2"), config2);
+  </script>
+</html>
