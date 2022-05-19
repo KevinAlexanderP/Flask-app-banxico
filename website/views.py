@@ -6,14 +6,6 @@ import os
 
 views = Blueprint('views', __name__)
 
-# @views.route('/home')
-# def home():
-#     return render_template("home.html")
-    
-# @views.route('/about')
-# def about():
-#     return render_template("about.html")
-
 @views.route("/api/usd/<begin_date>/<end_date>",methods=["POST","GET"])
 def get_moneys(begin_date,end_date):
         if request.method == "POST":
@@ -45,10 +37,6 @@ def login():
         return redirect(url_for("views.get_moneys", begin_date=fecha_inicio,end_date=fecha_final))
     else:
 	    return render_template("login.html")
-
-@views.route("/usd<begin_date>")
-def user(begin_date):
-    return f"<h1>{begin_date}</h1>"
 
 @views.route("/api/info-serie-SF43718")
 def serie_usd():
