@@ -12,20 +12,10 @@ def get_moneys(begin_date,end_date):
             fecha_inicio = request.form["fecha_inicio"]
             fecha_final = request.form["fecha_final"]
             return redirect(url_for("views.get_moneys", begin_date=fecha_inicio,end_date=fecha_final))
-        banxicoConstants = {"apiVersion" : "v1", "RESTSerie": "SieAPIRest" , "service": "service", "serieUS":"SF43718" , "serieUDIS":"SP68257" }
+        banxicoConstants = {"apiVersion" : "v1", "RESTSerie": "SieAPIRest" , "service": "service", "serieUS":"SF43718", "serieUDIS": "SP68257"  }
         token = "90fb8e5aa818ca5fae557685cc4f3aadca77c195764771960799ba80a66b29a8"
-        
-        url = 'https://www.banxico.org.mx/{}/{}/{}/series/{}/datos/{}/{}?token={}'.format(
-        banxicoConstants["RESTSerie"],
-        banxicoConstants["service"],
-        banxicoConstants["apiVersion"],
-        banxicoConstants["serieUS"],begin_date,end_date,token)
-
-        udis_url = 'https://www.banxico.org.mx/{}/{}/v1/series/SP68257/datos/{}/{}?token={}'.format(
-        banxicoConstants["RESTSerie"],
-        banxicoConstants["service"],
-        banxicoConstants["serieUDIS"],begin_date,end_date,token)
-
+        url = 'https://www.banxico.org.mx/{}/{}/{}/series/{}/datos/{}/{}?token={}'.format(banxicoConstants["RESTSerie"],banxicoConstants["service"],banxicoConstants["apiVersion"],banxicoConstants["serieUS"],begin_date,end_date,token)
+        udis_url = 'https://www.banxico.org.mx/{}/{}/v1/series/{}/datos/{}/{}?token={}'.format(banxicoConstants["RESTSerie"],banxicoConstants["service"],banxicoConstants["serieUDIS"],begin_date,end_date,token)
         response = urllib.request.urlopen(url)
         response_ud =  json.loads(urllib.request.urlopen(udis_url).read())
         data_udis = response_ud['bmx']['series'][0]['datos']
